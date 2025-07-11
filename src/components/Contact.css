@@ -1,0 +1,76 @@
+.contact-section {
+  padding: 80px 20px;
+  background: #f8f8f8;
+  text-align: center;
+  transition: background 0.3s, color 0.3s;
+}
+
+.contact-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+}
+
+.contact-icons {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.icon-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #333;
+  color: #fff;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  font-size: 1.8rem;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.icon-circle:hover {
+  transform: scale(1.1);
+}
+
+/* Specific platform colors */
+.instagram { background: #E1306C; }
+.youtube { background: #FF0000; }
+.github { background: #333; }
+.email { background: #0072c6; }
+.linkedin { background: #0077B5; }
+.whatsapp { background: #25D366; }
+
+.contact-details p {
+  margin: 5px 0;
+  font-size: 1.1rem;
+}
+
+/* Dark mode */
+body.dark .contact-section {
+  background: #121212;
+  color: #f0f0f0;
+}
+
+body.dark .icon-circle {
+  color: #fff;
+}
+
+body.dark .contact-details p {
+  color: #ccc;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .icon-circle {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+
+  .contact-section h2 {
+    font-size: 2rem;
+  }
+}

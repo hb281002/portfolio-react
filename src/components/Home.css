@@ -1,0 +1,169 @@
+.home-section {
+  position: relative;
+  background: #f8f8f8;
+  color: #333;
+  padding: 100px 20px 0; /* Removed bottom padding */
+  overflow: hidden; /* Hide any overflow */
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark .home-section {
+  background: #121212;
+  color: #f0f0f0;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.text {
+  flex: 1;
+}
+
+.stats {
+  display: flex;
+  gap: 50px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.stats h3 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.stats p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+body.dark .stats p {
+  color: #aaa;
+}
+
+.intro h1 {
+  font-size: 5rem;
+  font-weight: 300;
+  margin: 20px 0 10px;
+}
+
+.intro p {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+body.dark .intro p {
+  color: #ccc;
+}
+
+.scroll-down {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+body.dark .scroll-down {
+  color: #aaa;
+}
+
+.image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.image img {
+  width: 450px;
+  max-width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* Light effect in dark mode */
+body.dark .image::before {
+  content: '';
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(0, 183, 255, 0.6) 0%, transparent 70%);
+  z-index: 0;
+  border-radius: 50%;
+  filter: blur(80px);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Animation */
+.fade-up {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fadeUp 1s forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .content {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .intro h1 {
+    font-size: 4rem;
+  }
+
+  .stats {
+    justify-content: center;
+    gap: 30px;
+  }
+
+  .image img {
+    width: 350px;
+  }
+}
+
+@media (max-width: 576px) {
+  .intro h1 {
+    font-size: 3rem;
+  }
+
+  .intro p {
+    font-size: 1rem;
+  }
+
+  .image img {
+    width: 280px;
+  }
+
+  .stats h3 {
+    font-size: 1.5rem;
+  }
+
+  .year-text {
+    left: 20px;
+    font-size: 0.8rem;
+  }
+
+  body.dark .image::before {
+    width: 250px;
+    height: 250px;
+    filter: blur(60px);
+  }
+}

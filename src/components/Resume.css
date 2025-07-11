@@ -1,0 +1,92 @@
+.resume-section {
+  position: relative;
+  background: #f8f8f8;
+  color: #333;
+  padding: 100px 20px 50px;
+  overflow: hidden;
+  transition: background 0.3s, color 0.3s;
+  text-align: center;
+}
+
+body.dark .resume-section {
+  background: #121212;
+  color: #f0f0f0;
+}
+
+.resume-section h2 {
+  font-size: 3rem;
+  margin-bottom: 40px;
+  color: #0077ff;
+}
+
+.resume-images {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  max-width: 900px;
+  margin: auto;
+}
+
+.resume-images img {
+  width: 400px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.resume-images img:hover {
+  transform: scale(1.05);
+}
+
+.download-button {
+  display: inline-block;
+  margin-top: 30px;
+  background-color: #0077ff;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+.download-button:hover {
+  background-color: #005bb5;
+}
+
+/* Fade up animation */
+.fade-up {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fadeUp 1s forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .resume-images img {
+    width: 350px;
+  }
+}
+
+@media (max-width: 576px) {
+  .resume-section h2 {
+    font-size: 2rem;
+  }
+
+  .resume-images img {
+    width: 280px;
+  }
+
+  .download-button {
+    padding: 10px 20px;
+    font-size: 0.95rem;
+  }
+}
