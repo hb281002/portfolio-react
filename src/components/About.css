@@ -9,20 +9,12 @@ body {
   background-color: #f8f8f8;
   color: #333;
   font-family: 'Roboto', sans-serif;
-  transition: background 0.3s, color 0.3s, opacity 1s ease, transform 1s ease;
-  opacity: 0;
-  transform: translateY(20px);
+  transition: background 0.3s, color 0.3s;
 }
 
 body.dark .section.about {
   background-color: #121212;
   color: #f0f0f0;
-}
-
-/* === Fade-in Animation === */
-.section.about.fade-in {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 /* === Headings === */

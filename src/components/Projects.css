@@ -1,31 +1,15 @@
-/* === Animation on Scroll === */
 .projects-section {
   padding: 80px 20px;
   background: #f8f8f8;
   text-align: center;
-  transition: background 0.3s, color 0.3s, opacity 1s ease, transform 1s ease;
-  opacity: 0;
-  transform: translateY(20px);
+  transition: background 0.3s, color 0.3s;
 }
 
-.projects-section.fade-in {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-body.dark .projects-section {
-  background: #121212;
-  color: #f0f0f0;
-}
-
-/* === Heading === */
 .projects-section h2 {
-  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-size: 2.5rem;
   margin-bottom: 30px;
-  font-family: 'Poppins', sans-serif;
 }
 
-/* === Slider === */
 .slider {
   position: relative;
   max-width: 600px;
@@ -35,12 +19,12 @@ body.dark .projects-section {
 .project-image {
   width: 100%;
   border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   transition: opacity 0.5s ease-in-out, box-shadow 0.3s;
   cursor: pointer;
 }
 
-/* Arrows */
+/* Arrow buttons (only visible on PC/laptop via JS & CSS) */
 .arrow {
   position: absolute;
   top: 50%;
@@ -54,6 +38,7 @@ body.dark .projects-section {
   border-radius: 5px;
   user-select: none;
   transition: color 0.3s, transform 0.3s;
+  z-index: 2;
 }
 
 .arrow:hover {
@@ -69,14 +54,21 @@ body.dark .projects-section {
   right: -50px;
 }
 
-/* Modal Video */
+/* Hide arrows via CSS for small screens (tablet/mobile) */
+@media (max-width: 1024px) {
+  .arrow {
+    display: none !important;
+  }
+}
+
+/* Video Modal */
 .video-modal {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.8);
+  background: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -135,7 +127,12 @@ body.dark .projects-section {
   background-color: #4a00e0;
 }
 
-/* Dark Mode Tweaks */
+/* Dark Mode */
+body.dark .projects-section {
+  background: #121212;
+  color: #f0f0f0;
+}
+
 body.dark .arrow {
   color: #f0f0f0;
 }
@@ -156,56 +153,31 @@ body.dark .dot.active {
   background-color: #00b7ff;
 }
 
-/* === Responsive === */
-@media (max-width: 1024px) {
-  .slider {
-    max-width: 80%;
-  }
-}
-
+/* Responsive text scaling */
 @media (max-width: 768px) {
-  .arrow {
-    font-size: 2rem;
-    padding: 5px;
-  }
-
-  .arrow.left {
-    left: -30px;
-  }
-
-  .arrow.right {
-    right: -30px;
-  }
-}
-
-@media (max-width: 576px) {
   .projects-section h2 {
     font-size: 2rem;
   }
 
-  .arrow {
-    font-size: 1.8rem;
+  .slider {
+    max-width: 90%;
   }
 
-  .arrow.left {
-    left: -20px;
+  .video-container iframe {
+    height: 250px;
   }
+}
 
-  .arrow.right {
-    right: -20px;
+@media (max-width: 576px) {
+  .dot {
+    width: 10px;
+    height: 10px;
+    margin: 0 4px;
   }
 }
 
 @media (max-width: 400px) {
-  .arrow {
-    font-size: 1.5rem;
-  }
-
-  .arrow.left {
-    left: -15px;
-  }
-
-  .arrow.right {
-    right: -15px;
+  .projects-section h2 {
+    font-size: 1.8rem;
   }
 }

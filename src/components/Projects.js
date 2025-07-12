@@ -4,7 +4,7 @@ import project1 from '../assets/w1.jpg';
 import project2 from '../assets/w2.jpg';
 import project3 from '../assets/w3.jpg';
 
-// Translations for section title
+// Translations
 const translations = {
   English: "My Projects",
   தமிழ்: "என் திட்டங்கள்",
@@ -19,8 +19,9 @@ function Projects({ language }) {
   const [showVideo, setShowVideo] = useState(false);
   const sectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
-  // Auto slider every 3 seconds
+  // Auto slider
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent(prev => (prev + 1) % images.length);
@@ -28,18 +29,15 @@ function Projects({ language }) {
     return () => clearInterval(interval);
   }, [images.length]);
 
-  // Slide navigation
-  const prevSlide = () => {
-    setCurrent(prev => (prev === 0 ? images.length - 1 : prev - 1));
-  };
-
-  const nextSlide = () => {
-    setCurrent(prev => (prev + 1) % images.length);
-  };
-
-  // Fade-in on scroll
+  // Check if it's a touch device
   useEffect(() => {
-    const section = sectionRef.current;
+    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    setIsTouchDevice(isTouch);
+  }, []);
+
+  // Fade-in effect on scroll
+  useEffect(() => {
+    const sectionEl = sectionRef.current;
 
     const observer = new IntersectionObserver(
       entries => {
@@ -53,11 +51,44 @@ function Projects({ language }) {
       { threshold: 0.6 }
     );
 
-    if (section) observer.observe(section);
+    if (sectionEl) observer.observe(sectionEl);
     return () => {
-      if (section) observer.unobserve(section);
+      if (sectionEl) observer.unobserve(sectionEl);
     };
   }, []);
+
+  // Swipe gesture for touch devices
+  useEffect(() => {
+    if (!isTouchDevice) return;
+
+    const slider = sectionRef.current;
+    let startX = 0;
+
+    const handleTouchStart = e => {
+      startX = e.touches[0].clientX;
+    };
+
+    const handleTouchEnd = e => {
+      const endX = e.changedTouches[0].clientX;
+      const diff = startX - endX;
+
+      if (diff > 50) {
+        // Swipe left
+        setCurrent(prev => (prev + 1) % images.length);
+      } else if (diff < -50) {
+        // Swipe right
+        setCurrent(prev => (prev - 1 + images.length) % images.length);
+      }
+    };
+
+    slider.addEventListener('touchstart', handleTouchStart);
+    slider.addEventListener('touchend', handleTouchEnd);
+
+    return () => {
+      slider.removeEventListener('touchstart', handleTouchStart);
+      slider.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, [images.length, isTouchDevice]);
 
   const videoUrl = "https://www.youtube.com/embed/2qCpY38ompo";
 
@@ -70,7 +101,11 @@ function Projects({ language }) {
       <h2>{translations[language] || "My Projects"}</h2>
 
       <div className="slider">
-        <button className="arrow left" onClick={prevSlide}>&#10094;</button>
+        {!isTouchDevice && (
+          <button className="arrow left" onClick={() => setCurrent(prev => (prev === 0 ? images.length - 1 : prev - 1))}>
+            &#10094;
+          </button>
+        )}
 
         <img
           src={images[current]}
@@ -79,7 +114,11 @@ function Projects({ language }) {
           onClick={() => setShowVideo(true)}
         />
 
-        <button className="arrow right" onClick={nextSlide}>&#10095;</button>
+        {!isTouchDevice && (
+          <button className="arrow right" onClick={() => setCurrent(prev => (prev + 1) % images.length)}>
+            &#10095;
+          </button>
+        )}
 
         <div className="dots">
           {images.map((_, index) => (
