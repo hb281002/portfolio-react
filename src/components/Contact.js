@@ -48,15 +48,15 @@ function Contact({ language }) {
       <h2>{t.title}</h2>
 
       <div className="contact-icons">
-        <a href="https://www.instagram.com/yourusername" target="_blank" rel="noopener noreferrer" className="icon-circle instagram">
+        <a href="#" target="_blank" rel="noopener noreferrer" className="icon-circle instagram">
           <FaInstagram />
         </a>
 
-        <a href="https://www.youtube.com/channel/yourchannelid" target="_blank" rel="noopener noreferrer" className="icon-circle youtube">
+        <a href="https://www.youtube.com/channel/UCBi6qHOfvXmCGDw70f6XyAg" target="_blank" rel="noopener noreferrer" className="icon-circle youtube">
           <FaYoutube />
         </a>
 
-        <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="icon-circle github">
+        <a href="https://github.com/hb281002" target="_blank" rel="noopener noreferrer" className="icon-circle github">
           <FaGithub />
         </a>
 
@@ -64,7 +64,7 @@ function Contact({ language }) {
           <FaEnvelope />
         </a>
 
-        <a href="https://www.linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="icon-circle linkedin">
+        <a href="https://www.linkedin.com/in/hb281002" target="_blank" rel="noopener noreferrer" className="icon-circle linkedin">
           <FaLinkedin />
         </a>
 
