@@ -20,7 +20,7 @@ function Projects({ language }) {
   const sectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
-  // Auto change every 3 seconds
+  // Auto slider every 3 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent(prev => (prev + 1) % images.length);
@@ -28,6 +28,7 @@ function Projects({ language }) {
     return () => clearInterval(interval);
   }, [images.length]);
 
+  // Slide navigation
   const prevSlide = () => {
     setCurrent(prev => (prev === 0 ? images.length - 1 : prev - 1));
   };
@@ -36,7 +37,7 @@ function Projects({ language }) {
     setCurrent(prev => (prev + 1) % images.length);
   };
 
-  // Intersection Observer for animation
+  // Fade-in on scroll
   useEffect(() => {
     const section = sectionRef.current;
 
@@ -45,7 +46,7 @@ function Projects({ language }) {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             setIsVisible(true);
-            observer.unobserve(entry.target); // trigger only once
+            observer.unobserve(entry.target);
           }
         });
       },
@@ -53,19 +54,17 @@ function Projects({ language }) {
     );
 
     if (section) observer.observe(section);
-
     return () => {
       if (section) observer.unobserve(section);
     };
   }, []);
 
-  // YouTube video embed URL
   const videoUrl = "https://www.youtube.com/embed/2qCpY38ompo";
 
   return (
     <section
       id="projects"
-      className={`projects-section ${isVisible ? 'animate' : ''}`}
+      className={`projects-section ${isVisible ? 'fade-in' : ''}`}
       ref={sectionRef}
     >
       <h2>{translations[language] || "My Projects"}</h2>

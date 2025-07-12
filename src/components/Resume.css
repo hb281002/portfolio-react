@@ -1,92 +1,102 @@
+/* ===== Base Section Style ===== */
 .resume-section {
-  position: relative;
-  background: #f8f8f8;
-  color: #333;
-  padding: 100px 20px 50px;
-  overflow: hidden;
-  transition: background 0.3s, color 0.3s;
+  padding: 4rem 2rem;
   text-align: center;
+  background-color: #f9f9f9;
+  transition: background 0.3s, color 0.3s;
 }
 
 body.dark .resume-section {
-  background: #121212;
+  background-color: #1e1e1e;
   color: #f0f0f0;
 }
 
-.resume-section h2 {
-  font-size: 3rem;
-  margin-bottom: 40px;
-  color: #0077ff;
+/* ===== Fade In Animation ===== */
+.resume-section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
+.resume-section.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== Section Title ===== */
+.resume-section h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #222;
+}
+
+body.dark .resume-section h2 {
+  color: #f5f5f5;
+}
+
+/* ===== Resume Images ===== */
 .resume-images {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 2rem;
   flex-wrap: wrap;
-  max-width: 900px;
-  margin: auto;
+  margin-bottom: 2rem;
 }
 
 .resume-images img {
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
   transition: transform 0.3s ease;
 }
 
 .resume-images img:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
+/* ===== Download Button ===== */
 .download-button {
   display: inline-block;
-  margin-top: 30px;
-  background-color: #0077ff;
+  padding: 0.75rem 1.5rem;
+  background-color: #007BFF;
   color: white;
-  padding: 12px 25px;
-  border-radius: 8px;
-  text-decoration: none;
+  font-size: 1rem;
   font-weight: 600;
-  transition: background 0.3s;
+  text-decoration: none;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .download-button:hover {
-  background-color: #005bb5;
+  background-color: #0056b3;
+  transform: translateY(-2px);
 }
 
-/* Fade up animation */
-.fade-up {
-  opacity: 0;
-  transform: translateY(50px);
-  animation: fadeUp 1s forwards;
+body.dark .download-button {
+  background-color: #3399ff;
+  color: #fff;
 }
 
-@keyframes fadeUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
+body.dark .download-button:hover {
+  background-color: #1e90ff;
+}
+
+/* ===== Responsive Adjustments ===== */
+@media (max-width: 768px) {
+  .resume-images {
+    flex-direction: column;
+    align-items: center;
   }
-}
 
-/* Responsive */
-@media (max-width: 992px) {
-  .resume-images img {
-    width: 350px;
-  }
-}
-
-@media (max-width: 576px) {
   .resume-section h2 {
-    font-size: 2rem;
-  }
-
-  .resume-images img {
-    width: 280px;
+    font-size: 1.6rem;
   }
 
   .download-button {
-    padding: 10px 20px;
+    padding: 0.6rem 1.2rem;
     font-size: 0.95rem;
   }
 }

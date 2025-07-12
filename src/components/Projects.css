@@ -1,15 +1,31 @@
+/* === Animation on Scroll === */
 .projects-section {
   padding: 80px 20px;
   background: #f8f8f8;
   text-align: center;
-  transition: background 0.3s, color 0.3s;
+  transition: background 0.3s, color 0.3s, opacity 1s ease, transform 1s ease;
+  opacity: 0;
+  transform: translateY(20px);
 }
 
+.projects-section.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+body.dark .projects-section {
+  background: #121212;
+  color: #f0f0f0;
+}
+
+/* === Heading === */
 .projects-section h2 {
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 4vw, 2.5rem);
   margin-bottom: 30px;
+  font-family: 'Poppins', sans-serif;
 }
 
+/* === Slider === */
 .slider {
   position: relative;
   max-width: 600px;
@@ -24,7 +40,7 @@
   cursor: pointer;
 }
 
-/* Minimal plain arrows */
+/* Arrows */
 .arrow {
   position: absolute;
   top: 50%;
@@ -53,7 +69,7 @@
   right: -50px;
 }
 
-/* Video modal styles */
+/* Modal Video */
 .video-modal {
   position: fixed;
   top: 0;
@@ -94,12 +110,32 @@
   background: #e60023;
 }
 
-/* Dark mode styles */
-body.dark .projects-section {
-  background: #121212;
-  color: #f0f0f0;
+/* Dots */
+.dots {
+  text-align: center;
+  margin-top: 15px;
 }
 
+.dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin: 0 5px;
+  background-color: #bbb;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.dot:hover {
+  transform: scale(1.2);
+}
+
+.dot.active {
+  background-color: #4a00e0;
+}
+
+/* Dark Mode Tweaks */
 body.dark .arrow {
   color: #f0f0f0;
 }
@@ -112,7 +148,15 @@ body.dark .project-image {
   box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
 }
 
-/* Responsive adjustments */
+body.dark .dot {
+  background-color: #666;
+}
+
+body.dark .dot.active {
+  background-color: #00b7ff;
+}
+
+/* === Responsive === */
 @media (max-width: 1024px) {
   .slider {
     max-width: 80%;
@@ -124,9 +168,11 @@ body.dark .project-image {
     font-size: 2rem;
     padding: 5px;
   }
+
   .arrow.left {
     left: -30px;
   }
+
   .arrow.right {
     right: -30px;
   }
@@ -157,43 +203,9 @@ body.dark .project-image {
 
   .arrow.left {
     left: -15px;
-  } 
+  }
 
   .arrow.right {
     right: -15px;
   }
-}
-/* Existing styles unchanged */
-
-.dots {
-  text-align: center;
-  margin-top: 15px;
-}
-
-.dot {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  margin: 0 5px;
-  background-color: #bbb;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
-}
-
-.dot:hover {
-  transform: scale(1.2);
-}
-
-.dot.active {
-  background-color: #4a00e0;
-}
-
-/* Dark mode */
-body.dark .dot {
-  background-color: #666;
-}
-
-body.dark .dot.active {
-  background-color: #00b7ff;
 }

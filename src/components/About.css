@@ -1,152 +1,155 @@
-/* Main section styling */
+/* === Base Font Setup === */
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+/* === About Section === */
 .section.about {
-  position: relative;
-  background: #f8f8f8;
+  padding: 40px 20px;
+  background-color: #f8f8f8;
   color: #333;
-  padding: 100px 20px 50px;
-  overflow: hidden;
-  transition: background 0.3s, color 0.3s;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Roboto', sans-serif;
+  transition: background 0.3s, color 0.3s, opacity 1s ease, transform 1s ease;
+  opacity: 0;
+  transform: translateY(20px);
 }
 
 body.dark .section.about {
-  background: #121212;
+  background-color: #121212;
   color: #f0f0f0;
 }
 
-/* Light glow effect in dark mode */
-body.dark .section.about::before {
-  content: '';
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(0, 183, 255, 0.5) 0%, transparent 70%);
-  z-index: 0;
-  border-radius: 50%;
-  filter: blur(100px);
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+/* === Fade-in Animation === */
+.section.about.fade-in {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* Headings */
-.section.about h2 {
-  font-size: 3rem;
-  font-weight: 400;
-  margin-bottom: 30px;
-  text-align: center;
-  color: #00b7ff;
-  position: relative;
-  z-index: 1;
-}
-
+/* === Headings === */
+.section.about h2,
 .section.about h3 {
-  font-size: 2rem;
-  margin: 50px 0 20px;
-  color: #007acc;
+  font-family: 'Poppins', sans-serif;
   text-align: center;
-  position: relative;
-  z-index: 1;
+  margin-bottom: 20px;
+  color: #111;
+  font-size: clamp(1.8rem, 2.5vw, 2.4rem);
 }
 
-/* Paragraphs */
+body.dark .section.about h2,
+body.dark .section.about h3 {
+  color: #fff;
+}
+
+/* === Paragraphs === */
 .section.about p {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  text-align: center;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  line-height: 1.6;
   margin-bottom: 15px;
-  position: relative;
-  z-index: 1;
+  text-align: center;
+  color: #555;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* Table Styling */
+body.dark .section.about p {
+  color: #ccc;
+}
+
+/* === Table === */
 .section.about table {
   width: 100%;
-  max-width: 1000px;
-  margin: 30px auto;
   border-collapse: collapse;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 183, 255, 0.1);
-  border-radius: 10px;
-  overflow: hidden;
-  position: relative;
-  z-index: 1;
+  margin-top: 30px;
+  font-size: clamp(0.85rem, 1.2vw, 1rem);
+  font-family: 'Roboto', sans-serif;
+  overflow-x: auto;
+  display: block;
 }
 
-body.dark .section.about table {
-  background-color: #1e1e1e;
-}
-
-.section.about thead tr {
-  background-color: #00b7ff;
-  color: white;
-}
-
-.section.about th,
-.section.about td {
-  border: 1px solid #ddd;
-  padding: 12px 16px;
+.section.about table th,
+.section.about table td {
+  border: 1px solid #ccc;
+  padding: 10px 12px;
   text-align: left;
+  min-width: 120px;
+  word-break: break-word;
 }
 
-.section.about tbody tr:hover {
-  background-color: #f0faff;
-  transition: background 0.3s;
+.section.about table th {
+  background-color: #eaeaea;
+  color: #222;
+  font-family: 'Poppins', sans-serif;
 }
 
-body.dark .section.about tbody tr:hover {
-  background-color: #2a2a2a;
+body.dark .section.about table th {
+  background-color: #1f1f1f;
+  color: #f0f0f0;
 }
 
-.section.about a {
+.section.about table td {
+  color: #333;
+}
+
+body.dark .section.about table td {
+  color: #ddd;
+}
+
+/* === Links === */
+.section.about table a {
   color: #007acc;
   text-decoration: none;
+  word-break: break-word;
 }
 
-.section.about a:hover {
+body.dark .section.about table a {
+  color: #61dafb;
+}
+
+.section.about table a:hover {
   text-decoration: underline;
 }
 
-/* Responsive Table */
-@media (max-width: 768px) {
-  .section.about h2 {
-    font-size: 2.2rem;
+/* === Responsive Adjustments === */
+@media screen and (max-width: 768px) {
+  .section.about {
+    padding: 30px 15px;
   }
 
+  .section.about h2,
   .section.about h3 {
     font-size: 1.5rem;
+  }
+
+  .section.about table {
+    font-size: 0.9rem;
+    display: block;
+    overflow-x: auto;
+  }
+
+  .section.about table th,
+  .section.about table td {
+    padding: 8px 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .section.about {
+    padding: 20px 10px;
   }
 
   .section.about p {
     font-size: 1rem;
   }
 
-  .section.about table,
-  .section.about thead,
-  .section.about tbody,
-  .section.about th,
-  .section.about td,
-  .section.about tr {
-    display: block;
-    width: 100%;
+  .section.about h2,
+  .section.about h3 {
+    font-size: 1.3rem;
   }
 
-  .section.about thead {
-    display: none;
-  }
-
-  .section.about td {
-    padding: 12px;
-    border: none;
-    border-bottom: 1px solid #ddd;
-    position: relative;
-  }
-
-  .section.about td::before {
-    content: attr(data-label);
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
-    color: #00b7ff;
+  .section.about table th,
+  .section.about table td {
+    padding: 6px 8px;
+    font-size: 0.85rem;
   }
 }
