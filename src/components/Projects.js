@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Projects.css';
-import project1 from '../assets/w1.jpg';
-import project2 from '../assets/w2.jpg';
+import project1 from '../assets/w1.png';
+import project2 from '../assets/w2.png';
 import project3 from '../assets/w3.jpg';
 
 // Translations
@@ -14,31 +14,34 @@ const translations = {
 };
 
 function Projects({ language }) {
-  const images = [project1, project2, project3];
+  const projects = [
+    { image: project1, link: 'https://hb281002.github.io/ALPHA' },
+    { image: project2, link: 'https://online-ration.vercel.app/' },
+    { image: project3, link: 'https://yourproject3.com' }
+  ];
+
   const [current, setCurrent] = useState(0);
-  const [showVideo, setShowVideo] = useState(false);
-  const sectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const sectionRef = useRef(null);
 
-  // Auto slider
+  // Auto slider (10 seconds)
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrent(prev => (prev + 1) % images.length);
-    }, 3000);
+      setCurrent(prev => (prev + 1) % projects.length);
+    }, 10000);
     return () => clearInterval(interval);
-  }, [images.length]);
+  }, [projects.length]);
 
-  // Check if it's a touch device
+  // Detect touch device
   useEffect(() => {
     const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     setIsTouchDevice(isTouch);
   }, []);
 
-  // Fade-in effect on scroll
+  // Fade-in on scroll
   useEffect(() => {
     const sectionEl = sectionRef.current;
-
     const observer = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
@@ -52,12 +55,10 @@ function Projects({ language }) {
     );
 
     if (sectionEl) observer.observe(sectionEl);
-    return () => {
-      if (sectionEl) observer.unobserve(sectionEl);
-    };
+    return () => sectionEl && observer.unobserve(sectionEl);
   }, []);
 
-  // Swipe gesture for touch devices
+  // Swipe for touch devices
   useEffect(() => {
     if (!isTouchDevice) return;
 
@@ -73,11 +74,9 @@ function Projects({ language }) {
       const diff = startX - endX;
 
       if (diff > 50) {
-        // Swipe left
-        setCurrent(prev => (prev + 1) % images.length);
+        setCurrent(prev => (prev + 1) % projects.length); // Left swipe
       } else if (diff < -50) {
-        // Swipe right
-        setCurrent(prev => (prev - 1 + images.length) % images.length);
+        setCurrent(prev => (prev - 1 + projects.length) % projects.length); // Right swipe
       }
     };
 
@@ -88,9 +87,7 @@ function Projects({ language }) {
       slider.removeEventListener('touchstart', handleTouchStart);
       slider.removeEventListener('touchend', handleTouchEnd);
     };
-  }, [images.length, isTouchDevice]);
-
-  const videoUrl = "https://www.youtube.com/embed/2qCpY38ompo";
+  }, [isTouchDevice, projects.length]);
 
   return (
     <section
@@ -102,26 +99,41 @@ function Projects({ language }) {
 
       <div className="slider">
         {!isTouchDevice && (
-          <button className="arrow left" onClick={() => setCurrent(prev => (prev === 0 ? images.length - 1 : prev - 1))}>
+          <button
+            className="arrow left"
+            onClick={() =>
+              setCurrent(prev => (prev === 0 ? projects.length - 1 : prev - 1))
+            }
+          >
             &#10094;
           </button>
         )}
 
-        <img
-          src={images[current]}
-          alt={`Project ${current + 1}`}
-          className="project-image"
-          onClick={() => setShowVideo(true)}
-        />
+        <a
+          href={projects[current].link}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            src={projects[current].image}
+            alt={`Project ${current + 1}`}
+            className="project-image"
+          />
+        </a>
 
         {!isTouchDevice && (
-          <button className="arrow right" onClick={() => setCurrent(prev => (prev + 1) % images.length)}>
+          <button
+            className="arrow right"
+            onClick={() =>
+              setCurrent(prev => (prev + 1) % projects.length)
+            }
+          >
             &#10095;
           </button>
         )}
 
         <div className="dots">
-          {images.map((_, index) => (
+          {projects.map((_, index) => (
             <span
               key={index}
               className={`dot ${index === current ? 'active' : ''}`}
@@ -130,23 +142,6 @@ function Projects({ language }) {
           ))}
         </div>
       </div>
-
-      {showVideo && (
-        <div className="video-modal">
-          <div className="video-container">
-            <button className="close-btn" onClick={() => setShowVideo(false)}>X</button>
-            <iframe
-              src={videoUrl}
-              title="Project Video"
-              width="100%"
-              height="400px"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
-          </div>
-        </div>
-      )}
     </section>
   );
 }

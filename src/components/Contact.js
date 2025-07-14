@@ -1,6 +1,13 @@
 import React from 'react';
 import './Contact.css';
-import { FaInstagram, FaYoutube, FaGithub, FaEnvelope, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
+import {
+  FaInstagram,
+  FaYoutube,
+  FaGithub,
+  FaEnvelope,
+  FaLinkedin,
+  FaWhatsapp
+} from 'react-icons/fa';
 
 const translations = {
   English: {
@@ -48,15 +55,31 @@ function Contact({ language }) {
       <h2>{t.title}</h2>
 
       <div className="contact-icons">
-        <a href="#" target="_blank" rel="noopener noreferrer" className="icon-circle instagram">
+        {/* Replace with your real Instagram link if available */}
+        <a
+          href="https://www.instagram.com/yourusername"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="icon-circle instagram"
+        >
           <FaInstagram />
         </a>
 
-        <a href="https://www.youtube.com/channel/UCBi6qHOfvXmCGDw70f6XyAg" target="_blank" rel="noopener noreferrer" className="icon-circle youtube">
+        <a
+          href="https://www.youtube.com/channel/UCBi6qHOfvXmCGDw70f6XyAg"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="icon-circle youtube"
+        >
           <FaYoutube />
         </a>
 
-        <a href="https://github.com/hb281002" target="_blank" rel="noopener noreferrer" className="icon-circle github">
+        <a
+          href="https://github.com/hb281002"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="icon-circle github"
+        >
           <FaGithub />
         </a>
 
@@ -64,18 +87,28 @@ function Contact({ language }) {
           <FaEnvelope />
         </a>
 
-        <a href="https://www.linkedin.com/in/hb281002" target="_blank" rel="noopener noreferrer" className="icon-circle linkedin">
+        <a
+          href="https://www.linkedin.com/in/hb281002"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="icon-circle linkedin"
+        >
           <FaLinkedin />
         </a>
 
-        <a href="https://wa.me/916382789552" target="_blank" rel="noopener noreferrer" className="icon-circle whatsapp">
+        <a
+          href="https://wa.me/916382789552"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="icon-circle whatsapp"
+        >
           <FaWhatsapp />
         </a>
       </div>
 
       <div className="contact-details">
         <p>{t.email}: hb.2810002@example.com</p>
-        <p>{t.location}: {t.place}</p>  {/* Use translated place */}
+        <p>{t.location}: {t.place}</p>
         <p>{t.number}: +91 6382789552</p>
       </div>
     </section>
